@@ -24,7 +24,11 @@ outputs:
 
 runs:
   using: composite
-  steps:      
+  steps:
+    - id: install httpx
+      run: pip install httpx
+      shell: bash
+      
     - id: run-script
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
