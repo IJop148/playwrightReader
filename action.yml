@@ -28,9 +28,9 @@ runs:
     - id: run-script
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
-          python3 -Xutf8 "$GITHUB_ACTION_PATH\action\script.py" '${{ inputs.server_address }}' '${{ inputs.file }}' '${{ inputs.ssl_verify }}'
+          python3 -Xutf8 "$GITHUB_ACTION_PATH\action\script.py" '${{ inputs.server_address }} ${{ inputs.file }} ${{ inputs.ssl_verify }}'
          else
-          python3 -Xutf8 "$GITHUB_ACTION_PATH/action/script.py" '${{ inputs.server_address }}' '${{ inputs.file }}' '${{ inputs.ssl_verify }}'
+          python3 -Xutf8 "$GITHUB_ACTION_PATH/action/script.py" '${{ inputs.server_address }} ${{ inputs.file }} ${{ inputs.ssl_verify }}'
          fi
       shell: bash
 
