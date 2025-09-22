@@ -1,0 +1,38 @@
+name: "Playwright-viewer"
+description: A script to upload a html file to a viewing server
+author: <IJop148>
+
+inputs:
+  server_address:
+    description: Address of recieving server
+    required: true
+    default: http://127.0.0.1:3000
+  ssl_verify:
+    description: verify if ssl is valid and present
+    required: false
+    default: 'True'
+  file:
+    description: Name of the file
+    required: true
+    default: playwright-report/index.html
+
+outputs:
+  fileloc:
+    description: "location to view html"
+    value: ${{ steps.run-script.output.fileloc }}
+
+
+runs:
+  using: composite
+  steps:
+    - run: ${{ github.action_path }}/action/setup.sh
+      shell: bash
+      
+    - id: run-script
+      run: |
+        if [ "$RUNNER_OS" == "Windows" ]; then
+          python3 -Xutf8 "$GITHUB_ACTION_PATH\action\script.py" '${{ inputs.server_address }}' '${{ inputs.file }}' '${{ inputs.ssl_verify }}'
+         else
+          python3 -Xutf8 "$GITHUB_ACTION_PATH/action/script.py" '${{ inputs.server_address }}' '${{ inputs.file }}' '${{ inputs.ssl_verify }}'
+         fi
+      shell: bash
