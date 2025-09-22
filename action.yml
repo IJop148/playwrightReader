@@ -25,10 +25,10 @@ outputs:
 runs:
   using: composite
   steps:
-    - id: install httpx
-      run: pip install httpx
+    - name: install httpx
+      run: python3 -m pip install httpx
       shell: bash
-      
+
     - id: run-script
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
