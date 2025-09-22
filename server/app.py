@@ -31,7 +31,7 @@ def upload(gitsha: str):
     new_filename = pathlib.Path(file, f"index_{num}.html")
     f = request.files["html_file"]
     f.save(new_filename)
-
+    return {"file": str(new_filename)}
 
 
 if __name__ == '__main__':

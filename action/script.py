@@ -10,4 +10,5 @@ with httpx.Client(base_url=server, verify=bool(ssl_verify)) as c:
     f = c.post(url=os.environ["GITHUB_SHA"], files=os.open(file))
     json = f.json()
     with open("GITHUB_OUTPUT", "a") as fh:
-        print(f"fileloc={server+json["file"]}", file=fh)
+        f_name = server+json['file']
+        print(f"fileloc={f_name}", file=fh)
