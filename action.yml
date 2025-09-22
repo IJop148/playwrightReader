@@ -24,10 +24,7 @@ outputs:
 
 runs:
   using: composite
-  steps:
-    - run: ${{ github.action_path }}/action/setup.sh
-      shell: bash
-      
+  steps:      
     - id: run-script
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
@@ -36,3 +33,8 @@ runs:
           python3 -Xutf8 "$GITHUB_ACTION_PATH/action/script.py" '${{ inputs.server_address }}' '${{ inputs.file }}' '${{ inputs.ssl_verify }}'
          fi
       shell: bash
+
+
+branding:
+  icon: upload-cloud
+  color: purple

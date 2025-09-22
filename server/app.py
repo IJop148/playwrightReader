@@ -5,8 +5,9 @@ import pathlib
 app = Flask(__name__)
 app.static_folder = "./static"
 
+@app.route("/")
 @app.route("/<path:path>")
-def show(path):
+def show(path=""):
     new_path = pathlib.Path(app.static_folder, path)
     if new_path.is_file():
         return new_path.open("rb")
